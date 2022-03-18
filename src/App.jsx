@@ -3,12 +3,20 @@ import axios from 'axios';
 import UserMapper from './components/UserMapper';
 import CommentMapper from './components/CommentMapper';
 import ReplyMapper from './components/ReplyMapper';
-import Anxiety from './components/Anxiety';
+import Page from "./components/Page";
+//import Anxiety from './components/Anxiety';
+import Home from './components/Pages/Home';
+import Anxiety from './components/Pages/Anxiety';
+import Dementia from './components/Pages/Dementia';
+import Depression from './components/Pages/Depression';
+import Grief from './components/Pages/Grief';
+import Resources from './components/Pages/Resources';
 //import Register from './components/Register';
 import {
     BrowserRouter,
     Routes,
     Route,
+    Link,
 } from "react-router-dom";
 
 //component code 
@@ -52,12 +60,8 @@ function App() {
     const logoutUser = async () => {
         console.log(localStorage.getItem("token"))
         localStorage.removeItem("token");
+        console.log(localStorage.removeItem("token"));
     }
-
-
-
-
-
 
     return (
         <>
@@ -77,22 +81,52 @@ function App() {
             </div >
             <div>
                 <button type='button'
-                    onClick={() => logoutUser}
+                    onClick={() => logoutUser()}
                 >
                     Logout
                 </button>
             </div >
 
 
+            {/* 
+            <Nav
+                style={{
+                    borderBottom: "solid 1px",
+                    paddingBottom: "1 rem",
+                }} */}
+            {/* > */}
+            {/*
+                <Page name="Home"/>
+                <Page name="Anxiety" />
+                <Page name="Depression" />
+                <Page name="Grief" />
+                <Page name="Resources" /> */}
+            {/* </Nav> */}
 
-            {/* <Nav />//will use link comp. */}
+            {/* <nav
+                style={{
+                    borderBottom: "solid 1px",
+                    paddingBottom: "1rem",
+                }} */}
+            {/* > */}
+            {/* <Link to="/Home">Home </Link> */}
+            {/* <Link to="/Anxiety">Anxiety </Link>
+                <Link to="/Dementia">Dementia </Link>
+                <Link to="/Depression">Depression </Link>
+                <Link to="/Grief">Grief </Link>
+                <Link to="/Resources">Resources </Link> */}
+            {/* </nav> */}
+
+
             <BrowserRouter>
                 <Routes>
-                    <Route />//these will be my pages
-                    <Route path="home" />
-                    <Route path="anxiety" element={<Anxiety users={users} />} />
-                    <Route />
-                    <Route />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/Dementia" element={<Dementia />} />
+                    <Route path="/Depression" element={<Depression />} />
+                    <Route path="/Grief" element={<Grief />} />
+                    <Route path="/Resources" element={<Resources />} />
+
+                    {/* <Route path="Anxiety" element={<Anxiety users={users} />} />*/}
                 </Routes>
             </BrowserRouter>
             {/* <Footer /> */}
@@ -106,13 +140,6 @@ function App() {
         </>
     )
 }
-//COME BACk
-// handleLogout = async () => {
-//     localStorage.clear();
-//     this.setState({
-//         currentUser: undefined,
-//     })
-// }
 
 
 export default App;

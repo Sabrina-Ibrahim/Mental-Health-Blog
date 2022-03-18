@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import ReplyMapper from './ReplyMapper';
+//import Page from './Page';
 
 const CommentMapper = ({ comments }) => {
     return (<>
@@ -11,6 +12,7 @@ const CommentMapper = ({ comments }) => {
                     <div>
                         <Comment comment={comment} />
                         <ReplyMapper replies={comment.replies} />
+                        {/* <Page name={comment.pageName} /> */}
                     </div>
                 </li>
             ))}
