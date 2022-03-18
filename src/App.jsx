@@ -1,43 +1,117 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Users from './components/Users';
+import UserMapper from './components/UserMapper';
+import CommentMapper from './components/CommentMapper';
+import ReplyMapper from './components/ReplyMapper';
+import Anxiety from './components/Anxiety';
 //import Register from './components/Register';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
 
 //component code 
 function App() {
-    //specific variable, setUsers will set users = to w/e i want that (assignment function)
-    //res = object, data is w/e in it. everything backend is sending to me.
     const [users, setUsers] = useState([]);
-
+    //Handlers go here
     useEffect(() => {
-        axios.get('http://localhost:5002/api/users/').then(res => setUsers(res.data))
+        axios.get('http://localhost:5000/api/users/').then(res => setUsers(res.data))
         console.log(users);
-    });
+    }, []);
+
+    const registerUser = async () => {
+        await axios.post("http://localhost:5000/api/users", {
+            firstName: "cust15",
+            lastName: "cust15",
+            email: "cust15@cust.com",
+            userName: "@cust15",
+            password: "cust15@cust.com"
+        })
+            .then((res) => {
+                const usersWithNewUser = users.concat(res.data);
+                setUsers(usersWithNewUser);
+                console.log("After registering", usersWithNewUser);
+            })
+            .catch(error => console.log(error));
+        console.log(users)
+    };
+
+    const loginUser = async () => {
+        await axios.post("http://localhost:5000/api/auth/", {
+            email: "cust15@cust.com",
+            password: "cust15@cust.com",
+        })
+            .then((res) => {
+                console.log(res.data)
+                localStorage.setItem("token", res.data);
+            })
+            .catch(error => console.log(error));
+    }
+
+    const logoutUser = async () => {
+        console.log(localStorage.getItem("token"))
+        localStorage.removeItem("token");
+    }
+
+
+
+
+
+
     return (
-        <div>
-            <h1>TEST USERS</h1>
-            <Users user={users} />
-        </div>
+        <>
+            <div>
+                <button type='button'
+                    onClick={() => registerUser()}
+                >
+                    Register here!
+                </button>
+            </div >
+            <div>
+                <button type='button'
+                    onClick={() => loginUser()}
+                >
+                    Login
+                </button>
+            </div >
+            <div>
+                <button type='button'
+                    onClick={() => logoutUser}
+                >
+                    Logout
+                </button>
+            </div >
+
+
+
+            {/* <Nav />//will use link comp. */}
+            <BrowserRouter>
+                <Routes>
+                    <Route />//these will be my pages
+                    <Route path="home" />
+                    <Route path="anxiety" element={<Anxiety users={users} />} />
+                    <Route />
+                    <Route />
+                </Routes>
+            </BrowserRouter>
+            {/* <Footer /> */}
+
+            <div>
+                <UserMapper users={users} />
+                {users[0] && users.map((user, i) => <><p key={i} style={{ backgroundColor: "#faddad" }}>Here are {user.firstName}'s comments!</p>
+                    <CommentMapper comments={user.myPosts} /></>)
+                }
+            </div>
+        </>
     )
 }
-
-
-
-
-
-// function App() {
-//     const [users, setUsers] = useState([]);
-
-//     useEffect(() => {
-//         let response = axios.get('http://localhost:5002/api/users/').then(response => setUsers(response.data))
-//         console.log(response)
-//     }, []);
-//     return (
-//         <div>
-//             <h1>test</h1>
-//             <h2><Users user={users[0]} /></h2>
-//         </div>
-//     )
+//COME BACk
+// handleLogout = async () => {
+//     localStorage.clear();
+//     this.setState({
+//         currentUser: undefined,
+//     })
 // }
 
 
