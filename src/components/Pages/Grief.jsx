@@ -1,11 +1,43 @@
-import React from 'react';
+// import React from 'react';
+// import Comment from './Comment';
+// import ReplyMapper from './ReplyMapper';
 
-function Grief() {
-    return (
-        <div>
-            THIS IS THE GRIEF PAGE.
-        </div>
-    )
-}
+// const Grief = ({ users }) => {
+//     return (<div>
+//         <h2>Grief Page</h2>
+//         <h3> _____ </h3>
 
-export default Grief; 
+//         {
+//             (users ?? []).map(user => {
+//                 <ul>
+//                     {user.myPosts.filter(comment => comment.pageName === "Grief").map(comment => {
+//                         <li key={comment._id}>
+//                             <div>
+//                                 <Comment comment={comment} />
+//                                 <ReplyMapper replies={comment.replies} />
+//                             </div>
+//                         </li>
+//                     })}
+//                 </ul>
+//             })
+//         }
+//     </div>);
+// }
+
+// export default Grief;
+
+
+
+
+
+// // import React from 'react';
+
+// // function Grief() {
+// //     return (
+// //         <div>
+// //             THIS IS THE GRIEF PAGE.
+// //         </div>
+// //     )
+// // }
+
+// // export default Grief; 

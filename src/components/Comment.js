@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const Comment = ({ comment }) => {
-    const { likeCount, replies, pageName, ownedBy, text, posted } = comment
+const Comment = (props) => {
+    // const { likeCount, replies, pageName, ownedBy, text, posted } = comment
     return (<>
-        <p><em>{text}</em></p>
+        <p><em>{props.post.text}</em></p>
 
 
     </>);
