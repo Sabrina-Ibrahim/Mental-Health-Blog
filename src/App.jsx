@@ -7,7 +7,7 @@ import Page from "./components/Page";
 // import Anxiety from './components/Anxiety';
 import Home from './components/Pages/Home';
 import Register from './components/Register';
-// import Anxiety from './components/Pages/Anxiety';
+import Anxiety from './components/Pages/Anxiety';
 import Dementia from './components/Pages/Dementia';
 import Depression from './components/Pages/Depression';
 import Grief from './components/Pages/Grief';
@@ -20,6 +20,7 @@ import {
     Link,
 } from "react-router-dom";
 import Login from './components/Login';
+import NewsfeedItem from './components/NewsfeedItem';
 
 //component code 
 
@@ -49,7 +50,7 @@ function App() {
                     <Link to={"/"}> Login </Link>
                     <Link to={"/Register"}> Register</Link>
                     <Link to={"/Home"}> Home </Link>
-                    {/* <Link to={"/Anxiety"}> Anxiety </Link> */}
+                    <Link to={"/Anxiety"}> Anxiety </Link>
                     <Link to={"/Dementia"}> Dementia </Link>
                     <Link to={"/Depression"}> Depression </Link>
                     <Link to={"/Grief"}> Grief </Link>
@@ -59,10 +60,10 @@ function App() {
                     <Route path="/" element={<Login setUser={setUser} />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Home" element={<Home user={user} />} />
-                    {/* <Route path="/Anxiety" element={<Anxiety />} /> */}
-                    <Route path="/Dementia" element={<Dementia />} />
+                    <Route path="/Anxiety" element={<Anxiety user={user} users={users} setUsers={setUsers} />} />
+                    <Route path="/Dementia" element={<Dementia user={user} users={users} setUsers={setUsers} />} />
                     <Route path="/Depression" element={<Depression user={user} users={users} setUsers={setUsers} />} />
-                    {/* <Route path="/Grief" element={<Grief />} /> */}
+                    <Route path="/Grief" element={<Grief user={user} users={users} setUsers={setUsers} />} />
                     <Route path="/Resources" element={<Resources />} />
                     <Route path="*" element={<ErrorPage />} />
 

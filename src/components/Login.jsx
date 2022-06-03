@@ -33,7 +33,7 @@ const Login = (props) => {
                         <p> <input
                             value={formValues.email} onChange={handleChange} className='form-field' placeholder='Email' name='email' /></p>
                         <p><input
-                            value={formValues.password} onChange={handleChange} className='form-field' placeholder='Password' name='password' /></p>
+                            value={formValues.password} onChange={handleChange} type="password" className='form-field' placeholder='Password' name='password' /></p>
                         <button className="loginButton" type='submit' //on form type submit it'll run the onsubmit that is attacehd to the form
                         >
                             Login

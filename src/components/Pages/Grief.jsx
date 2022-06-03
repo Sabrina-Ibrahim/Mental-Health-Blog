@@ -1,43 +1,60 @@
-// import React from 'react';
-// import Comment from './Comment';
-// import ReplyMapper from './ReplyMapper';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import useForm from '../../CustomHooks/useForm';
+import CommentMapper from '../CommentMapper';
+import NewsfeedItem from '../NewsfeedItem';
+//import ReplyMapper from '../ReplyMapper';
+import jwtDecode from 'jwt-decode';
 
-// const Grief = ({ users }) => {
-//     return (<div>
-//         <h2>Grief Page</h2>
-//         <h3> _____ </h3>
+const Grief = (props) => {
+    const CommentPost = async (form, userId) => {
+        await axios.post(`http://localhost:5000/api/comments/${userId}`, form, { headers: { "x-auth-token": localStorage.getItem("token") } })
+            .then((res) => {
+                props.setUsers(res.data)
+                console.log(res.data)
 
-//         {
-//             (users ?? []).map(user => {
-//                 <ul>
-//                     {user.myPosts.filter(comment => comment.pageName === "Grief").map(comment => {
-//                         <li key={comment._id}>
-//                             <div>
-//                                 <Comment comment={comment} />
-//                                 <ReplyMapper replies={comment.replies} />
-//                             </div>
-//                         </li>
-//                     })}
-//                 </ul>
-//             })
-//         }
-//     </div>);
-// }
+            })
+            .catch(error => console.log(error));
 
-// export default Grief;
+    }
 
+    const ClickCmntPost = () => {
+        //take info out of form values, put in a new one and add pagename into it 
+        let form = { text: formValues.text, pageName: "Grief" }
+        CommentPost(form, props.user._id)
+    }
+    const { formValues, handleChange, handleSubmit } = useForm(ClickCmntPost);
 
+    return (
+        <div>
+            <div className='PageTitle'>
+                <h1><center>Welcome to the Grief Support Page</center></h1>
+                <h2>What's on your mind?</h2>
+            </div>
+            <div>
+                <form onSubmit={handleSubmit} className='Comment-form'>
+                    <div> <input
+                        value={formValues.text} onChange={handleChange} className='form-field' placeholder='Post a comment' name='text' /></div>
 
+                    <button className="CommentButton" type='submit'>
+                        Post
+                    </button>
+                </form>
+            </div>
+            <div id="Grief__user_comments">
+                <div>
+                    {
+                        props.users
+                            .flatMap(user => user.myPosts)
+                            .filter(post => post.pageName === "Grief")
+                            .map(post => <NewsfeedItem setUsers={props.setUsers} user={props.user} post={post} key={post._id} />)
+                    }
+                </div>
+            </div>
+        </div>
+    )
 
+}
 
-// // import React from 'react';
+export default Grief;
 
-// // function Grief() {
-// //     return (
-// //         <div>
-// //             THIS IS THE GRIEF PAGE.
-// //         </div>
-// //     )
-// // }
-
-// // export default Grief; 

@@ -4,12 +4,14 @@ import useForm from '../../CustomHooks/useForm';
 import CommentMapper from '../CommentMapper';
 import NewsfeedItem from '../NewsfeedItem';
 //import ReplyMapper from '../ReplyMapper';
+import jwtDecode from 'jwt-decode';
 
 const Depression = (props) => {
     //post a comment, makes API req
     const CommentPost = async (form, userId) => {
-        await axios.post(`http://localhost:5000/api/comments/${userId}`, form)
+        await axios.post(`http://localhost:5000/api/comments/${userId}`, form, { headers: { "x-auth-token": localStorage.getItem("token") } })
             .then((res) => {
+                props.setUsers(res.data)
                 console.log(res.data)
 
             })
@@ -26,7 +28,10 @@ const Depression = (props) => {
 
     return (
         <div>
-            <h1 className='CommentBox'>What's on your mind?</h1>
+            <div className='PageTitle'>
+                <h1><center>Welcome to the Depression Support Page</center></h1>
+                <h2 className='CommentBox'>What's on your mind?</h2>
+            </div>
             <div>
                 <form onSubmit={handleSubmit} className='Comment-form'>
                     <p> <input
@@ -43,14 +48,7 @@ const Depression = (props) => {
                         props.users
                             .flatMap(user => user.myPosts)
                             .filter(post => post.pageName === "Depression")
-                            .map(post => <NewsfeedItem post={post} key={post._id} />)
-                        // .map(post => {
-                        //     <li key={post._id}>
-                        //         {post.text}
-                        //         {/* <CommentMapper post={post} /> */}
-                        //         {/* <ReplyMapper replies={post.replies ?? []} /> */}
-                        //     </li>
-                        // })
+                            .map(post => <NewsfeedItem setUsers={props.setUsers} user={props.user} post={post} key={post._id} />)
                     }
                 </div>
             </div>
@@ -62,23 +60,4 @@ const Depression = (props) => {
 export default Depression;
 
 
-
-
-
-
-
-
-
-
-
-
-
-// function Depression() {
-//     return (
-//         <div>
-//             THIS IS THE DEPRESSION PAGE.
-
-//         </div>
-//     )
-// }
 

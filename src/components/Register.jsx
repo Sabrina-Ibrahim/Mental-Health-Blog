@@ -8,7 +8,8 @@ function Register() {
     let navigate = useNavigate();
 
     const registerUser = async (form) => {
-        await axios.post("http://localhost:5000/api/users", form)
+        console.log(form)
+        await axios.post("http://localhost:5000/api/users/", form)
             .then((res) => {
                 console.log(res.data)
                 // const usersWithNewUser = users.concat(res.data);
@@ -21,19 +22,18 @@ function Register() {
 
     const ClickLogout = () => {
         registerUser(formValues)
-        navigate("/home")
+        navigate("/")
     }
 
     const { formValues, handleChange, handleSubmit } = useForm(ClickLogout);
 
     return (
         <div>
-            <div>
-                <h1 className="RegisterBioh1"><center>You don't have to go through life's challenges alone.</center></h1>
-                <h2 className="RegisterBioh2"><center>Say hello to support, relief, and overall wellness.</center></h2>
-                <h2 className="RegisterBioh2">We are glad you are here!</h2>
-                <h3 className="RegisterBioh3"><center>Please enter your information below.</center> </h3></div>
-
+            <div className='PageTitle'>
+                <h1><center>Get started with account</center></h1>
+                <p><center>Find support, relief, and overall wellness with hundreds of people like you!</center></p>
+                <p><center>You don't have to go through life's challenges alone. We are glad you are here!</center></p>
+            </div>
             <div>
                 <div className='form-container'>
                     <div className='form-container'>
@@ -51,7 +51,7 @@ function Register() {
 
                             <button className="RegisterButton" type='submit'
                             >
-                                Register
+                                Create
                             </button>
                         </form>
                     </div>

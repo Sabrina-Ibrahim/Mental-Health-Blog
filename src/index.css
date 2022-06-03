@@ -2,13 +2,69 @@ body {
   background-image: url("../src/Photos/plant\ dark\ 1\ 2.jpeg");
 }
 
-/* *,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+.PageTitle{
+  font-family: Tahoma;
+}
+.ResourceBio > p {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.ResourceTips{
+  display: grid;
+  grid-gap: 35px;
+  grid-template-columns: 35rem 35rem;
+  font-family: monospace;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.ResourceTips > div {
+  padding: 40px;
+  background-color: #96be89c2;
+  border-radius: 35px;
+  box-shadow: 10px 10px 5px #393939;
+}
+
+.GriefBio > h2 {
+  padding: 24px;
+  background-color: rgb(132 169 114);
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px #272626;
+  width: fit-content;
+}
+
+/* .CommentBox{
+  margin-left: 45px;
 } */
+
+.CommentButton{
+  background-color: rgb(132 169 114);
+  border-radius: 6px;
+  font-size: 20px;
+  /* margin-top: 216px; */
+  margin-left: 401px;
+}
+
+.form-info{
+  padding: 115px;
+  width: 15rem;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 20px;
+  color: gray;
+  margin-left: 25px;
+}
+
+.Anxiety-title{
+  text-align: center;
+}
+
+.profile-picture{
+  width: 15rem;
+  border-radius: 130px;
+  padding-left: 7px;
+}
 
 html {
   box-sizing: border-box;
@@ -47,6 +103,7 @@ a {
 .loginTitle {
   text-align: center;
   font-weight: lighter;
+  margin-top: 130px;
 }
 
 .login-form {
@@ -68,12 +125,17 @@ a {
 }
 
 .form-field {
-  padding: 7px;
+width: 62vh;
+height: 25vh;
+border-radius: 30px;
+font-size: 20px;
+color: gray;
+  /* padding: 7px;
   width: 30rem;
   height: 38px;
   border-radius: 30px;
   font-size: 20px;
-  color: gray;
+  color: gray; */
 }
 
 .registerField {
@@ -83,21 +145,6 @@ a {
   border-radius: 30px;
   font-size: 20px;
   color: gray;
-}
-
-.RegisterBioh1 {
-  text-align: center;
-  font-weight: lighter;
-}
-
-.RegisterBioh2 {
-  text-align: center;
-  font-weight: lighter;
-}
-
-.RegisterBioh3 {
-  text-align: center;
-  font-weight: lighter;
 }
 
 .loginButton {
@@ -122,22 +169,25 @@ a {
   font: normal;
   font-size: 20px;
   text-align: right;
-  margin-top: 55px;
+  margin-top: 110px;
   margin-right: 95px;
   color: black;
 }
 
 .newsfeed-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex; 
+  justify-content: space-between; 
   padding: 28px;
   background-color: rgba(0, 0, 0, 0.5);
   width: 40%;
   border-radius: 30px;
   color: white;
   float: right;
-  margin-right: 10%;
+  margin-right: 5%;
+  flex-direction: column-reverse;
+  margin-bottom: 8px;
+  position: relative;
+
 }
 
 .newsfeed-item__header {
@@ -171,6 +221,55 @@ a {
 }
 
 .footer {
-  margin-top: 95px;
+  margin-top: 30px;
   margin-left: 15px;
+}
+
+.post-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 40%;
+  border-radius: 30px;
+  color: white;
+  float: right;
+  margin-right: 10%;
+}
+
+.reply-items {
+  color: bisque;
+}
+
+.homeTitle {
+  color: bisque;
+  padding-left: 7px;
+}
+
+.post-header {
+  color: bisque;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  width: 40%;
+  border-radius: 30px;
+  margin-right: 10%;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 25px;
+}
+
+.commentbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 40%;
+    border-radius: 30px;
+    color: white;
+    float: right;
+    margin-right: 10%;
 }
